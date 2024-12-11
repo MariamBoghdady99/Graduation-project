@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "496349822788",
+    "project_id": "elderhome-25df1",
+    "storage_bucket": "elderhome-25df1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:496349822788:android:73a2707676c9fb643a6111",
+        "android_client_info": {
+          "package_name": "com.example.my_web_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "496349822788-rnr8jb2mgrnfk1qnt7aagn9rbbjcu735.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8GSUpKaY5yx7-DQyQ4Rk4WpcTwJPjbW4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "496349822788-rnr8jb2mgrnfk1qnt7aagn9rbbjcu735.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:496349822788:android:ab32a7b4aa598fde3a6111",
+        "android_client_info": {
+          "package_name": "com.mariamboghdady.web_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "496349822788-rnr8jb2mgrnfk1qnt7aagn9rbbjcu735.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8GSUpKaY5yx7-DQyQ4Rk4WpcTwJPjbW4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "496349822788-rnr8jb2mgrnfk1qnt7aagn9rbbjcu735.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
