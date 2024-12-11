@@ -1,0 +1,996 @@
+ // class SignUpPage extends StatefulWidget {
+ //
+ //   static String id = 'sign_up_screen';
+ //
+ //   const SignUpPage({Key? key}) : super(key: key);
+ //
+ //   @override
+ //   State<SignUpPage> createState() => _SignUpPageState();
+ // }
+ //
+ // class _SignUpPageState extends State<SignUpPage> {
+ //   final _auth = FirebaseAuth.instance;
+ //
+ //   late String email;
+ //   late String password;
+ //
+ //
+ //   @override
+ //   Widget build(BuildContext context) {
+ //     return Scaffold(
+ //       appBar: AppBar(
+ //         title: Text(
+ //           'Sign up',
+ //           style: TextStyle(
+ //             fontSize: 30.0,
+ //           ),
+ //         ),
+ //       ),
+ //       body: Column(
+ //         mainAxisAlignment: MainAxisAlignment.center,
+ //         crossAxisAlignment: CrossAxisAlignment.stretch,
+ //         children: [
+ //           TextField(
+ //               keyboardType: TextInputType.emailAddress,
+ //               textAlign: TextAlign.center,
+ //               onChanged: (value) {
+ //                 email = value;
+ //               },
+ //               decoration: InputDecoration(hintText: 'Enter your Email')
+ //           ),
+ //           SizedBox(
+ //             height: 8.0,
+ //           ),
+ //           TextField(
+ //             textAlign: TextAlign.center,
+ //             obscureText: true,
+ //             onChanged: (value) {
+ //               password = value;
+ //             },
+ //             decoration: InputDecoration(hintText: 'Enter your password'),
+ //           ),
+ //           SizedBox(
+ //             height: 24.0,
+ //           ),
+ //           Material(
+ //             elevation: 5.0,
+ //             color: Colors.lightBlueAccent,
+ //             borderRadius: BorderRadius.circular(30.0),
+ //             child: MaterialButton(
+ //               minWidth: 200.0,
+ //               height: 42.0,
+ //               onPressed: () async {
+ //                 try{
+ //                   final newUser = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+ //                   if(newUser != null){
+ //                     Navigator.pushNamed(context, PrincipalPage.id);
+ //                   }
+ //                 } catch (e) {
+ //                   print(e);
+ //                 }
+ //               },
+ //               child: Text(
+ //                 'Sign Up'
+ //               ),
+ //             ),
+ //           ),
+ //         ],
+ //       ),
+ //     );
+ //   }
+ // }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+ // IconButton(
+              //   icon: Icon(Icons.camera),
+              //   onPressed: () async {
+              //     final picker = ImagePicker();
+              //     final PickedFile? image = await picker.getImage(source: ImageSource.gallery);
+              //     String name = Uuid().v1();
+              //     Uint8List? bytes = await image?.readAsBytes();
+              //     Reference ref = FirebaseStorage.instance.ref().child('${name}.png');
+              //     UploadTask uploadTask = ref.putData(bytes!, SettableMetadata(contentType: 'image/png'));
+              //
+              //     TaskSnapshot taskSnapshot = await uploadTask
+              //         .whenComplete(() {
+              //           print('done');
+              //         })
+              //         .catchError((error) => print('something went wrong'));
+              //     String url = await taskSnapshot.ref.getDownloadURL();
+              //     if(url.isEmpty){
+              //       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content:Text('Please upload an image')));
+              //     }
+              //     drugImageList.add(url);
+              //   },
+              //   // onPressed: () async {
+              //   //   //step1: pick the picture
+              //   //   ImagePicker imagePicker = ImagePicker();
+              //   //   XFile? file = await imagePicker.pickImage(source: ImageSource.gallery);
+              //   //   print('${file?.path}');
+              //   //
+              //   //   //if(file == null) return;
+              //   //   //step2: upload to firestore storage
+              //   //   String uniqueFileName = DateTime.now().millisecondsSinceEpoch.toString();
+              //   //   //get a reference to storage root
+              //   //   Reference referenceRoot = FirebaseStorage.instance.ref();
+              //   //   Reference referenceDirImages = referenceRoot.child('images');
+              //   //
+              //   //   //create a reference for the image to be stored
+              //   //   Reference referenceImageToBeUpload = referenceDirImages.child(unigueFileName);
+              //   //
+              //   //   try {
+              //   //     //store the file
+              //   //     await referenceImageToBeUpload.putFile(File(file!.path));
+              //   //     //success: step 3: get the doanload URL
+              //   //     imageUrl = await referenceImageToBeUpload.getDownloadURL();
+              //   //   }catch(error) {
+              //   //     print(error);
+              //   //   }
+              //   //
+              //   // },
+              // ),
+              // Image.memory(
+              //   _imageInfo!.data!,
+              //   width: 180,
+              // ),
+              // Expanded(
+              //   child: TextField(
+              //     onChanged: (value) {
+              //       drugImage = value;
+              //     },
+              //     controller: controllerDrugImage,
+              //     decoration: InputDecoration(
+              //       border: OutlineInputBorder(),
+              //       hintText: 'Drug Image',
+              //     ),
+              //   ),
+              // ),
+
+              ////////////////////////////////////////////////////
+
+Row(
+          //   children: [
+          //     Expanded(
+          //       child: TextField(
+          //         controller: controllerDrugName,
+          //         onChanged: (value){
+          //           drugName = value;
+          //         },
+          //         decoration: InputDecoration(
+          //           border: OutlineInputBorder(),
+          //           hintText: 'Drug Name',
+          //         ),
+          //       ),
+          //     ),
+          //     Expanded(
+          //       child: TextField(
+          //         onChanged: (value) {
+          //           drugSerialNumber = value;
+          //         },
+          //         controller: controllerDrugSerialNumber,
+          //         decoration: InputDecoration(
+          //           border: OutlineInputBorder(),
+          //           hintText: 'Drug Serial Number',
+          //         ),
+          //       ),
+          //     ),
+          //     Expanded(
+          //       child: TextField(
+          //         onChanged: (value) {
+          //           drugDose = value;
+          //         },
+          //         controller: controllerDrugDose,
+          //         decoration: InputDecoration(
+          //           border: OutlineInputBorder(),
+          //           hintText: 'Drug Dose',
+          //         ),
+          //       ),
+          //     ),
+          //     Column(
+          //       children: [
+          //         ElevatedButton.icon(
+          //             onPressed: () async {
+          //               final picker = ImagePicker();
+          //               final PickedFile? image = await picker.getImage(source: ImageSource.gallery);
+          //               String name = Uuid().v1();
+          //               Uint8List? bytes = await image?.readAsBytes();
+          //               Reference ref = FirebaseStorage.instance.ref().child('${name}.png');
+          //               UploadTask uploadTask = ref.putData(bytes!, SettableMetadata(contentType: 'image/png'));
+          //
+          //               TaskSnapshot taskSnapshot = await uploadTask
+          //                   .whenComplete(() {
+          //                 print('done');
+          //               })
+          //                   .catchError((error) => print('something went wrong'));
+          //               String url = await taskSnapshot.ref.getDownloadURL();
+          //               if(url.isEmpty){
+          //                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(content:Text('Please upload an image')));
+          //               }
+          //               drugImageList.add(url);
+          //               setState(() {
+          //                 imageMessage = '${name}.png is uploaded';
+          //               });
+          //             },
+          //             icon: Icon(Icons.cloud_upload_rounded),
+          //             label: Text(
+          //               'Upload Image',
+          //             ),
+          //         ),
+          //         Container(
+          //           width: 100,
+          //             height: 50,
+          //             child: Text(imageMessage),
+          //         ),
+          //       ],
+          //     ),
+          //    SizedBox(width: 10,),
+          //     ElevatedButton(
+          //         onPressed: (){
+          //           drugNameList.add(controllerDrugName.text);
+          //           drugSerialNumberList.add(controllerDrugSerialNumber.text);
+          //           //drugImageList.add(controllerDrugImage.text);
+          //           drugDoseList.add(controllerDrugDose.text);
+          //
+          //           controllerDrugName.clear();
+          //           controllerDrugSerialNumber.clear();
+          //           //controllerDrugImage.clear();
+          //           controllerDrugDose.clear();
+          //           //add the drug details
+          //           // drugs.add(drugToAdd);
+          //           setState(() {
+          //
+          //           });
+          //           print('$drugName is saved');
+          //         },
+          //         child: Text(
+          //           'add',
+          //         ),
+          //     ),
+          //   ],
+          // ),
+          //////////////////////////////////////////////////
+// Future getImage() async {
+  //   var firebaseUser = await FirebaseAuth.instance.currentUser!;
+  //   ImagePicker imagePicker = ImagePicker();
+  //   XFile? file = await imagePicker.pickImage(source: ImageSource.gallery);
+  //   if (file != null) {
+  //     Reference ref = FirebaseStorage.instance.ref();
+  //     try{
+  //       TaskSnapshot addImage = await ref.child('images').putFile(File(file.path));
+  //
+  //       final String downloadUrl = await addImage.ref.getDownloadURL();
+  //       //await FirebaseFirestore.instance.collection('collectionPath')
+  //     }catch (e){
+  //       print(e);
+  //     }
+  //
+  //   }
+  // }
+
+////////////////////////////////////////////////////////////////////////
+// TextButton.icon(
+          //   icon: Icon(
+          //     FontAwesomeIcons.peopleGroup,
+          //     color: Colors.cyanAccent[400],
+          //     size: 20.0,
+          //   ),
+          //   style: ButtonStyle(
+          //     backgroundColor: MaterialStatePropertyAll<Color>(Colors.white),
+          //   ),
+          //   onPressed: () {
+          //     Navigator.pushNamed(context, AboutUsPage.id);
+          //   },
+          //   label: Text(
+          //       'ِAbout us',
+          //     style: TextStyle(
+          //       color: Colrors.cyanAccent[400],
+          //     ),
+          //   ),
+          // ),
+
+         // TextButton.icon(
+         //   style: ElevatedButton.styleFrom(
+         //     backgroundColor: Colors.white,
+         //     //maximumSize: Size(30.0, 15.0),
+         //   ),
+         //     onPressed: () {
+         //       Navigator.pushNamed(context, SignUpPage.id);
+         //     },
+         //   icon: Icon(
+         //     FontAwesomeIcons.rightToBracket,
+         //     size: 20.0,
+         //     color: Colors.cyanAccent[400],
+         //   ),
+         //   label: Text(
+         //     'Sign up',
+         //     style: TextStyle(
+         //       color: Colors.cyanAccent[400],
+         //       fontSize: 20.0,
+         //     ),
+         //   ),
+         // ),
+         //  SizedBox(width: 10.0,),
+         //  TextButton.icon(
+         //    style: ElevatedButton.styleFrom(
+         //      backgroundColor: Colors.white,
+         //    ),
+         //    onPressed: () {
+         //      Navigator.pushNamed(context, LogInPage.id);
+         //    },
+         //    icon: Icon(
+         //      FontAwesomeIcons.user,
+         //      size: 20.0,
+         //      color: Colors.cyanAccent[400],
+         //    ),
+         //    label: Text(
+         //      'Log in',
+         //      style: TextStyle(
+         //        color: Colors.cyanAccent[400],
+         //        fontSize: 20.0,
+         //      ),
+         //    ),
+         //  )
+
+         /////////////////////////////////////////////////////////////////
+         // body: Container(
+               //   child: Center(
+               //     child: Expanded(
+               //       child: ListView(
+               //         children: [
+               //           SizedBox(
+               //             width: double.infinity,
+               //             height: 450.0,
+               //             child: Carousel(
+               //               dotSize: 5.0,
+               //               dotSpacing: 15.0,
+               //               dotPosition: DotPosition.bottomCenter,
+               //               images: [
+               //                 Image.asset('images/HM1.jpg', fit: BoxFit.cover,),
+               //                 Image.asset('images/HM2.jpg', fit: BoxFit.fill,),
+               //                 Image.asset('images/HM3.jpg', fit: BoxFit.fill,),
+               //                 Image.asset('images/HM4.jpg', fit: BoxFit.fill,),
+               //                 Image.asset('images/HM5.jpg', fit: BoxFit.fill,),
+               //               ],
+               //             ),
+               //           ),
+               //         ],
+               //       ),
+               //     ),
+               //   ),
+               // ),
+
+               //__________________________________________________________________________
+
+ // body: StreamBuilder<QuerySnapshot>(
+      //   //stream: _stream,
+      //   builder: (BuildContext context, AsyncSnapshot snapshot) {
+      //     //check error
+      //     if(snapshot.hasError){
+      //       return Center(
+      //         child: Text('Some errors occured ${snapshot.error}'),
+      //       );
+      //     }
+      //
+      //     //check if data arrived
+      //     if(snapshot.hasData){
+      //       QuerySnapshot querySnapshot = snapshot.data;
+      //       List<QueryDocumentSnapshot> documents = querySnapshot.docs;
+      //
+      //       //Convert the documents to Maps
+      //       List<Map> items = documents.map((e) => e.data() as Map).toList();
+      //
+      //       return ListView.builder(
+      //         itemCount: items.length,
+      //           itemBuilder: (BuildContext context, int index){
+      //             //Get the item at this index
+      //             Map thisItem = items[index];
+      //             return ListTile(
+      //               title: Text('${thisItem['Drug Name']}'),
+      //               subtitle: Text('${thisItem['Drug Serial Number']}'),
+      //               onTap: () {
+      //                 Navigator.pushNamed(context, DrugDetails.id);
+      //               },
+      //             );
+      //           }
+      //       );
+      //     }
+      //   },
+      // ),
+      ////////////////////////////////////////////////////////////////////
+ // return ListTile(
+                      //   leading: Text(
+                      //     drugData['DrugImage'],
+                      //     maxLines: 1,
+                      //     overflow: TextOverflow.ellipsis,
+                      //     style: TextStyle(
+                      //         color: Colors.black54,
+                      //         fontSize: 16,
+                      //         fontWeight: FontWeight.bold),
+                      //   ),
+                      //   title: Text(
+                      //     drugData['Drug Name'],
+                      //     maxLines: 1,
+                      //     overflow: TextOverflow.ellipsis,
+                      //     style: TextStyle(
+                      //         color: Colors.black54,
+                      //         fontSize: 16,
+                      //         fontWeight: FontWeight.bold),
+                      //   ),
+                      //   subtitle: Text(
+                      //     drugData['Drug Dose'],
+                      //     maxLines: 1,
+                      //     overflow: TextOverflow.ellipsis,
+                      //     style: TextStyle(
+                      //         color: Colors.black54,
+                      //         fontSize: 16,
+                      //         fontWeight: FontWeight.bold),
+                      //   ),
+                      //   trailing: Text(
+                      //     drugData['Drug Serial Number'],
+                      //     maxLines: 1,
+                      //     overflow: TextOverflow.ellipsis,
+                      //     style: TextStyle(
+                      //         color: Colors.black54,
+                      //         fontSize: 16,
+                      //         fontWeight: FontWeight.bold),
+                      //   ),
+                      // );
+  //////////////////////////////////////////////////////////////////////////////////
+  // child: FutureBuilder(
+                //   future: FirebaseFirestore.instance.doc(docId).collection(drugCollection).get(),
+                //   builder: (context, snapshot){
+                //     if(snapshot.connectionState == ConnectionState.done){
+                //       //if we get an error
+                //       if(snapshot.hasError){
+                //         return Center(
+                //           child: Text(
+                //             '${snapshot.error} occurred',
+                //             style: TextStyle(fontSize: 18),
+                //           ),
+                //         );
+                //       }//if we got the data
+                //       else if(snapshot.hasData) {
+                //         //extracting data from snapshot object
+                //         final Map<String, dynamic>? drugdata = snapshot.data as Map<String,dynamic>;
+                //         //return your widget for the details page hare
+                //         return ListTile(
+                //           leading: Text(
+                //             drugdata!['DrugImage'],
+                //             maxLines: 1,
+                //             overflow: TextOverflow.ellipsis,
+                //             style: TextStyle(
+                //                 color: Colors.black54,
+                //                 fontSize: 16,
+                //                 fontWeight: FontWeight.bold),
+                //           ),
+                //           title: Text(
+                //             drugdata!['Drug Name'],
+                //             maxLines: 1,
+                //             overflow: TextOverflow.ellipsis,
+                //             style: TextStyle(
+                //                 color: Colors.black54,
+                //                 fontSize: 16,
+                //                 fontWeight: FontWeight.bold),
+                //           ),
+                //           subtitle: Text(
+                //             drugdata!['Drug Dose'],
+                //             maxLines: 1,
+                //             overflow: TextOverflow.ellipsis,
+                //             style: TextStyle(
+                //                 color: Colors.black54,
+                //                 fontSize: 16,
+                //                 fontWeight: FontWeight.bold),
+                //           ),
+                //           trailing: Text(
+                //             drugdata!['Drug Serial Number'],
+                //             maxLines: 1,
+                //             overflow: TextOverflow.ellipsis,
+                //             style: TextStyle(
+                //                 color: Colors.black54,
+                //                 fontSize: 16,
+                //                 fontWeight: FontWeight.bold),
+                //           ),
+                //         );
+                //       }
+                //     }
+                //     return Center(
+                //       child: CircularProgressIndicator(),
+                //     );
+                //   },
+                // ),
+                // child: StreamBuilder<QuerySnapshot> (
+                //   stream: drugStream,
+                //   builder: (context, snapshots) {
+                //     return (snapshots.connectionState == ConnectionState.waiting)
+                //         ? Center(
+                //       child: CircularProgressIndicator(),
+                //     )
+                //         : ListView.builder(
+                //       itemCount: snapshots.data!.docs.length,
+                //         itemBuilder: (context, index) {
+                //         var drugsData = snapshots.data!.docs[index].data() as Map<String, dynamic>;
+                //         return Column(
+                //           children: [
+                //             Row(
+                //               children: [
+                //                 Text('Name: '),
+                //                 SizedBox(width: 5,),
+                //                 Text(drugsData['Drug Name']),
+                //                 Divider(),
+                //                 Text('Serial number: '),
+                //                 SizedBox(width: 5,),
+                //                 Text(drugsData['Drug Serial Number']),
+                //                 Divider(),
+                //                 Text('Dose: '),
+                //                 SizedBox(width: 5,),
+                //                 Text(drugsData['Drug Dose']),
+                //               ],
+                //             ),
+                //             SizedBox(height: 5,),
+                //             Row(
+                //               children: [
+                //                 Text('Image'),
+                //                 SizedBox(width: 5,),
+                //                 Text(drugsData['DrugImage'])
+                //               ],
+                //             ),
+                //           ],
+                //         );
+                //         }
+                //     );
+                //   },
+                // ),
+
+  /////////////////////////////////////////////////////////////////////////////////////////////////
+// if((data['Name'].toString().toLowerCase().startsWith(name.toLowerCase()))||
+                //     (data['Room number'].toString().toLowerCase().startsWith(name.toLowerCase()))){
+                //   return ListTile(
+                //     title: Text(
+                //       data['Name'],
+                //       maxLines: 1,
+                //       overflow: TextOverflow.ellipsis,
+                //       style: TextStyle(
+                //           color: Colors.black54,
+                //           fontSize: 16,
+                //           fontWeight: FontWeight.bold),
+                //     ),
+                //     subtitle: Text(
+                //       data['Room number'],
+                //       maxLines: 1,
+                //       overflow: TextOverflow.ellipsis,
+                //       style: TextStyle(
+                //           color: Colors.black54,
+                //           fontSize: 16,
+                //           fontWeight: FontWeight.bold),
+                //     ),
+                //   );
+                // }
+                ///////////////////////////////////////////////////////////////////////////////////////
+// body: StreamBuilder<QuerySnapshot>(
+      //   //stream: _stream,
+      //   builder: (BuildContext context, AsyncSnapshot snapshot) {
+      //     //check error
+      //     if(snapshot.hasError){
+      //       return Center(
+      //         child: Text('Some errors occured ${snapshot.error}'),
+      //       );
+      //     }
+      //
+      //     //check if data arrived
+      //     if(snapshot.hasData){
+      //       QuerySnapshot querySnapshot = snapshot.data;
+      //       List<QueryDocumentSnapshot> documents = querySnapshot.docs;
+      //
+      //       //Convert the documents to Maps
+      //       List<Map> items = documents.map((e) => e.data() as Map).toList();
+      //
+      //       return ListView.builder(
+      //         itemCount: items.length,
+      //           itemBuilder: (BuildContext context, int index){
+      //             //Get the item at this index
+      //             Map thisItem = items[index];
+      //             return ListTile(
+      //               title: Text('${thisItem['Drug Name']}'),
+      //               subtitle: Text('${thisItem['Drug Serial Number']}'),
+      //               onTap: () {
+      //                 Navigator.pushNamed(context, DrugDetails.id);
+      //               },
+      //             );
+      //           }
+      //       );
+      //     }
+      //   },
+      // ),
+      ////////////////////////////////////////////////////////////////////////////////////////////
+// Container(
+                      //   padding: kTextContainerPadding,
+                      //   decoration: kTextContainerDecoration,
+                      //   child: TextFormField(
+                      //     keyboardType: TextInputType.emailAddress,
+                      //     textAlign: TextAlign.center,
+                      //     onChanged: (value) {
+                      //       email = value;
+                      //     },
+                      //     decoration: InputDecoration(
+                      //       hintText: "Email",
+                      //       border: InputBorder.none,
+                      //       prefixIcon: Icon(
+                      //         Icons.email,
+                      //         color: Colors.grey,
+                      //       ),
+                      //     ),
+                      //   ),
+                      // ),
+
+
+                     /////////////////////////////////////////////////////////////////////////
+                      // Container(
+                      //   padding: EdgeInsets.symmetric(
+                      //       horizontal: 2, vertical: 5),
+                      //   decoration: BoxDecoration(
+                      //       color: Color(0xfff5f8fd),
+                      //       borderRadius:
+                      //       BorderRadius.all(Radius.circular(20))),
+                      //   child: TextFormField(
+                      //     textAlign: TextAlign.center,
+                      //     onChanged: (value) {
+                      //       password = value;
+                      //     },
+                      //     obscureText: true,
+                      //     decoration: InputDecoration(
+                      //       hintText: "Password",
+                      //       border: InputBorder.none,
+                      //       prefixIcon:
+                      //       Icon(Icons.vpn_key, color: Colors.grey),
+                      //     ),
+                      //   ),
+                      // ),
+                      ////////////////////////////////////////////////////////////////////////////
+                              // Container(
+                              //   padding: EdgeInsets.symmetric(
+                              //       horizontal: 20, vertical: 5),
+                              //   decoration: BoxDecoration(
+                              //       color: Color(0xFFE1F5FE),
+                              //       borderRadius: BorderRadius.all(Radius.circular(20),
+                              //       ),
+                              //   ),
+                              //   child: TextFormField(
+                              //     textAlign: TextAlign.start,
+                              //     keyboardType: TextInputType.text,
+                              //     onChanged: (value) {
+                              //       userName = value;
+                              //     },
+                              //     decoration: InputDecoration(
+                              //       border: InputBorder.none,
+                              //
+                              //       labelText: 'Please Enter Your Username',
+                              //       floatingLabelStyle:
+                              //       MaterialStateTextStyle.resolveWith((Set<MaterialState> states) {
+                              //         final Color color = states.contains(MaterialState.error)
+                              //             ? Theme.of(context).colorScheme.error
+                              //             : Colors.black;
+                              //         return TextStyle(color: color, letterSpacing: 1.3);
+                              //       }),
+                              //       labelStyle:
+                              //       MaterialStateTextStyle.resolveWith((Set<MaterialState> states) {
+                              //         final Color color = states.contains(MaterialState.error)
+                              //             ? Theme.of(context).colorScheme.error
+                              //             : Colors.black;
+                              //         return TextStyle(color: color, letterSpacing: 1.3);
+                              //       }),
+                              //     ),
+                              //   ),
+                              // ),
+                              //////////////////////////////////////////////////////////////////////
+                              // Container(
+                                                            //   padding: EdgeInsets.symmetric(
+                                                            //       horizontal: 20, vertical: 5),
+                                                            //   decoration: BoxDecoration(
+                                                            //     color: Color(0xFF9FA8DA),
+                                                            //     borderRadius: BorderRadius.all(Radius.circular(20),
+                                                            //     ),
+                                                            //   ),
+                                                            //   child: TextFormField(
+                                                            //     keyboardType: TextInputType.emailAddress,
+                                                            //     textAlign: TextAlign.start,
+                                                            //     onChanged: (value) {
+                                                            //       email = value;
+                                                            //     },
+                                                            //     decoration: InputDecoration(
+                                                            //       border: InputBorder.none,
+                                                            //       labelText: 'Please Enter Your Email',
+                                                            //       floatingLabelStyle:
+                                                            //       MaterialStateTextStyle.resolveWith((Set<MaterialState> states) {
+                                                            //         final Color color = states.contains(MaterialState.error)
+                                                            //             ? Theme.of(context).colorScheme.error
+                                                            //             : Colors.black;
+                                                            //         return TextStyle(color: color, letterSpacing: 1.3);
+                                                            //       }),
+                                                            //       labelStyle:
+                                                            //       MaterialStateTextStyle.resolveWith((Set<MaterialState> states) {
+                                                            //         final Color color = states.contains(MaterialState.error)
+                                                            //             ? Theme.of(context).colorScheme.error
+                                                            //             : Colors.black;
+                                                            //         return TextStyle(color: color, letterSpacing: 1.3);
+                                                            //       }),
+                                                            //     ),
+                                                            //   ),
+                                                            // ),
+                                                            ///////////////////////////////////////////////////////////////////////////////////////////
+// Container(
+                              //   padding: EdgeInsets.symmetric(
+                              //       horizontal: 20, vertical: 5),
+                              //   decoration: BoxDecoration(
+                              //     color: Color(0xFFE0E0E0),
+                              //     borderRadius: BorderRadius.all(Radius.circular(20)),
+                              //   ),
+                              //   child: TextFormField(
+                              //     textAlign: TextAlign.start,
+                              //     obscureText: true,
+                              //     onChanged: (value) {
+                              //       password = value;
+                              //     },
+                              //     decoration: InputDecoration(
+                              //       border: InputBorder.none,
+                              //       labelText: 'Please Enter Your Password',
+                              //       floatingLabelStyle:
+                              //       MaterialStateTextStyle.resolveWith((Set<MaterialState> states) {
+                              //         final Color color = states.contains(MaterialState.error)
+                              //             ? Theme.of(context).colorScheme.error
+                              //             : Colors.black;
+                              //         return TextStyle(color: color, letterSpacing: 1.3);
+                              //       }),
+                              //       labelStyle:
+                              //       MaterialStateTextStyle.resolveWith((Set<MaterialState> states) {
+                              //         final Color color = states.contains(MaterialState.error)
+                              //             ? Theme.of(context).colorScheme.error
+                              //             : Colors.black;
+                              //         return TextStyle(color: color, letterSpacing: 1.3);
+                              //       }),
+                              //     ),
+                              //   ),
+                              // ),
+                              ///////////////////////////////////////////////////////////////////////
+// ElevatedButton(
+                    //     style:ElevatedButton.styleFrom(
+                    //       elevation: 26,
+                    //       padding: EdgeInsets.symmetric(
+                    //           vertical: 15, horizontal: 55),
+                    //       shape: RoundedRectangleBorder(
+                    //         side: BorderSide(color: Colors.blueGrey),
+                    //         borderRadius:
+                    //         BorderRadius.all(Radius.circular(20)),
+                    //       ),
+                    //       backgroundColor: Color(0xFF9FA8DA),
+                    //     ),
+                    //   onPressed: () async {
+                    //     try{
+                    //       final newUser = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+                    //       if(newUser != null){
+                    //          Navigator.pushNamed(context, PrincipalPage.id);
+                    //         //Navigator.push(context, MaterialPageRoute(builder: (context) => PrincipalPage()));
+                    //       }
+                    //     } catch (e) {
+                    //       print(e);
+                    //     }
+                    //   },
+                    //     child: Text(
+                    //       "Sign Up",
+                    //       style: TextStyle(
+                    //           fontSize: 16,
+                    //           color: Colors.blueGrey,
+                    //           fontWeight: FontWeight.w700),
+                    //     ),
+                    // ),
+
+ //////////////////////////////////////////////////////////////////////////////////////////////////
+// ElevatedButton(
+                    //   style:ElevatedButton.styleFrom(
+                    //     elevation: 26,
+                    //     padding: EdgeInsets.symmetric(
+                    //         vertical: 15, horizontal: 55),
+                    //     shape: RoundedRectangleBorder(
+                    //       side: BorderSide(color: Colors.blueGrey),
+                    //       borderRadius:
+                    //       BorderRadius.all(Radius.circular(20)),
+                    //     ),
+                    //     backgroundColor:    Color(0xFF9FA8DA),
+                    //
+                    //   ),
+                    //   onPressed: () {
+                    //
+                    //   },
+                    //   child: Row(
+                    //     children: [
+                    //       Text(
+                    //         "Sign Up With",
+                    //         style: TextStyle(
+                    //             fontSize: 16,
+                    //             color: Colors.blueGrey,
+                    //             fontWeight: FontWeight.w700),
+                    //       ),
+                    //       Image.asset('images/google.png',
+                    //       height: 20,),
+                    //     ],
+                    //   ),
+                    // ),
+
+                    ////////////////////////////////////////////////////////////////////////////
+
+// ElevatedButton(
+                    //   style: ElevatedButton.styleFrom(
+                    //       elevation: 3,
+                    //       padding: EdgeInsets.symmetric(
+                    //           vertical: 15, horizontal: 50),
+                    //       backgroundColor: Colors.lightBlue[900],
+                    //       shape: RoundedRectangleBorder(
+                    //         side: BorderSide(color: Colors.white70),
+                    //         borderRadius: BorderRadius.all(Radius.circular(30)),
+                    //       )
+                    //   ),
+                    //   onPressed: () async {
+                    //     try {
+                    //       final user = await _auth.signInWithEmailAndPassword(email: email, password: password);
+                    //       if (user != null ) {
+                    //         Navigator.pushNamed(context, PrincipalPage.id);
+                    //       }
+                    //     } catch (e) {
+                    //       print(e);
+                    //     }
+                    //   },
+                    //   child: Text(
+                    //     "Sign In",
+                    //     style: TextStyle(
+                    //         fontSize: 20,
+                    //         color: Colors.white,
+                    //         fontWeight: FontWeight.w700
+                    //     ),
+                    //   ),
+                    // ),
+
+                   //////////////////////////////////////////////////////////////////////////////
+// GestureDetector(
+                    //   //Signin with google button.
+                    //   onTap: () {
+                    //
+                    //   },
+                    //   child: Container(
+                    //     padding: EdgeInsets.symmetric(
+                    //         horizontal: 10, vertical: 5
+                    //     ),
+                    //     decoration: BoxDecoration(
+                    //         color: Color(0xfff5f8fd),
+                    //         borderRadius:
+                    //         BorderRadius.all(Radius.circular(20)),
+                    //         boxShadow: [
+                    //           BoxShadow(
+                    //             //Created this shadow for looking elevated.
+                    //             //For creating like a card.
+                    //               color: Colors.black12,
+                    //               offset: Offset(0.0, 18.0), // This offset is for making the the lenght of the shadow and also the brightness of the black color try seeing it by changing its values.
+                    //               blurRadius: 15.0
+                    //           ),
+                    //           BoxShadow(
+                    //               color: Colors.black12,
+                    //               offset: Offset(0.0, -04.0),
+                    //               blurRadius: 10.0
+                    //           ),
+                    //         ],
+                    //     ),
+                    //     child: Row(
+                    //       mainAxisAlignment: MainAxisAlignment
+                    //           .center, // I had added main axis allignment to be center to make to be at the center.
+                    //       children: [
+                    //         Text(
+                    //           "Sign In With",
+                    //           style: TextStyle(
+                    //               fontSize: 16,
+                    //               color: Colors.deepPurpleAccent,
+                    //               fontWeight: FontWeight.w700),
+                    //         ),
+                    //         Image.asset(
+                    //           'images/google.png',
+                    //           height: 40,
+                    //         )
+                    //       ],
+                    //     ),
+                    //   ),
+                    // )
+
+                    //////////////////////////////////////////////////////////////////////////////
+// body: FutureBuilder(
+      //   future: getData(),
+      //   builder: (context, snapshot){
+      //     if(snapshot.hasError){
+      //       return const Text('Something went wrong',);
+      //     }
+      //     if(snapshot.connectionState == ConnectionState.done){
+      //       dataList = snapshot.data as List;
+      //       return buildItems(dataList);
+      //     }
+      //     return const Center(child: CircularProgressIndicator(),);
+      //   },
+      //
+      // )
+      ///////////////////////////////////////////////////////////////////////////////////////
+       // Widget buildItems(dataList) => ListView.separated(
+        //   padding: const EdgeInsets.all(8),
+        //     itemBuilder: (BuildContext context, int index) {
+        //     return ListTile(
+        //       // leading: CircleAvatar(
+        //       //   backgroundImage: NetworkImage(dataList[index]['Image']),
+        //       // ),
+        //       title: Text(
+        //         dataList[index]['Name'],
+        //       ),
+        //       subtitle: Text(
+        //         dataList[index]['Age'],
+        //       ),
+        //       trailing: Text(
+        //         dataList[index]['Room number'],
+        //       ),
+        //     );
+        //     if(dataList[index]['Name'].toString().startsWith(name.toLowerCase())){
+        //       return ListTile(
+        //         // leading: CircleAvatar(
+        //         //   backgroundImage: NetworkImage(dataList[index]['Image']),
+        //         // ),
+        //         title: Text(
+        //           dataList[index]['Name'],
+        //         ),
+        //         subtitle: Text(
+        //           dataList[index]['Age'],
+        //         ),
+        //         trailing: Text(
+        //           dataList[index]['Room number'],
+        //         ),
+        //       );
+        //     }
+        //     },
+        //     separatorBuilder: (BuildContext context, int index) => const Divider(),
+        //     itemCount: dataList.length,
+        // );
+
+        ////////////////////////////////////////////////////////////////
+        // TextFieldContainer(containerColor: Color(0xFFE0E0E0),
+                                      //     obscureText: true,
+                                      //     onChanged:  (value) {
+                                      //       password = value;
+                                      //     },
+                                      //     iconColor: Colors.black45,
+                                      //     insertedHint: 'Please Enter Your Password',
+                                      //     insertedIcon: Icons.password),
+
+        ////////////////////////////////////////////////////////////////////////////////////
+        // MainButton(
+                            //
+                            //     text: 'Sign UP',
+                            //     colors: [
+                            //       Color(0xFF9FA8DA),
+                            //       Color(0xFF607D8B),
+                            //     ],
+                            //     isOnlight: false,
+                            //   onPressed: () async {
+                            //     try{
+                            //       final newUser = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+                            //       if(newUser != null){
+                            //         Navigator.pushNamed(context, PrincipalPage.id);
+                            //         //Navigator.push(context, MaterialPageRoute(builder: (context) => PrincipalPage()));
+                            //       }
+                            //     } catch (e) {
+                            //       print(e);
+                            //     }
+                            //   },
+                            //     ),
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////
+        // boxShadow: [
+                                      //   BoxShadow(
+                                      //     color: Colors.grey.withOpacity(0.5),
+                                      //     spreadRadius: 5,
+                                      //     blurRadius: 7,
+                                      //     offset: Offset(0, 3),
+                                      //   ),
+                                      // ],
+
+      ///////////////////////////////////////////////////////////////////////////////////////////

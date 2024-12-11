@@ -1,0 +1,9 @@
+{
+    "message": {
+        "token": "",
+        "notification": {
+            "body": "This is the Web Notification",
+            "title": "FCM Message"
+        }
+    }
+}
